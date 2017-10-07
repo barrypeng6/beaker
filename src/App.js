@@ -13,25 +13,19 @@ import Login from './scenes/Login';
 import Home from './scenes/Home';
 
 class App extends Component {
-  state = {
-    isInit: false
-  }
   async componentDidMount() {
     // get global data from api
     await fakeAuth.getStoreList();
-    // use callback in setState as much as posibble
-    this.setState(()=>({isInit: true}))
   }
   render() {
     return (
-      this.state.isInit ? <Router>
+      <Router>
         <Switch>
           <Route path="/login" component={Login}/>
           <PrivateRoute exact path="/" component={Home}/>
           <NoMatchRoute/>
         </Switch>
       </Router>
-      : <div>Loading ...</div>
     );
   }
 }
