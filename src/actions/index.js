@@ -5,6 +5,7 @@ const headers = new Headers({
 
 export function checkLoginStatus() {
   return async (dispatch, getState) => {
+    dispatch({type: 'IS_CHECKING'});
     const res = await fetch('https://api.stage.meepcloud.com/graphql', {
       method: 'POST',
       headers: headers,
@@ -23,18 +24,32 @@ export function checkLoginStatus() {
       if(res.status < 400) {
         const data = await res.json();
         if(data) {
-          dispatch(loginSuccess());
+          dispatch(checkIsLogin());
         } else {
-          dispatch(loginFail());
+          console.log('error', data)
         }
       } else {
-        console.log('error')
+        console.log('401未授權');
+        dispatch(checkIsLogout());
       }
+  }
+}
+
+function checkIsLogin() {
+  return {
+    type: 'CHECK_IS_LOGIN'
+  }
+}
+
+function checkIsLogout() {
+  return {
+    type: 'CHECK_IS_LOGOUT'
   }
 }
 
 export function loginFlow() {
   return async (dispatch, getState) => {
+    dispatch({type: 'IS_LOGINING'});
     const res = await fetch('https://api.stage.meepcloud.com/auth/login', {
       method: 'POST',
       headers: headers,

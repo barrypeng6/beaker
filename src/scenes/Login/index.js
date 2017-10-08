@@ -5,7 +5,8 @@ import { loginFlow } from '../../actions'
 
 const mapStateToProps = (state) => {
   return {
-    loginStatus: state.loginStatus
+    isLogining: state.loginStatus.isLogining,
+    isLogin: state.loginStatus.isLogin
   }
 }
 
@@ -18,18 +19,18 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class Login extends Component {
-    _login = () => {
-      console.log('login request');
-      this.props.onLogin();
-    }
-  
     render() {
+      const { isLogin, isLogining, onLogin } = this.props;
       const { from } = this.props.location.state || { from: { pathname: '/' } };
       return (
-        this.props.loginStatus ? <Redirect to={from}/>
+        isLogin ? <Redirect to={from}/>
         : <div>
           <p>You must log in to view the page at {from.pathname}</p>
-          <button onClick={this._login}>Log in</button>
+          {isLogining ? <span>loading...</span>
+            : <button onClick={() => {
+                onLogin();
+              }}
+            >Log in</button>}
         </div>
       );
     }

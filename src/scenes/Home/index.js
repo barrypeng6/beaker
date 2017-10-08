@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutFlow } from '../../actions';
 
 const mapStateToProps = (state) => {
   return {
-    loginStatus: state.loginStatus
+    isLogin: state.loginStatus.isLogin
   }
 }
 
@@ -17,18 +17,15 @@ const mapDispatchToProps = (dispatch) => {
   };
 }
 
-class Home extends Component {
-    render() {
-      const { loginStatus, onLogout } = this.props;
-      return <div>
-        <AuthButton loginStatus={loginStatus} onLogout={onLogout} />
-          <h1>Home</h1>
-      </div>;
-    }
-}
+const Home = ({ isLogin, onLogout }) => (
+  <div>
+    <LogoutButton isLogin={isLogin} onLogout={onLogout} />
+    <h1>Home</h1>
+  </div>
+);
 
-const AuthButton = withRouter(({ history, loginStatus, onLogout }) => (
-  loginStatus ? (
+const LogoutButton = withRouter(({ history, isLogin, onLogout }) => (
+  isLogin ? (
     <p>
       Welcome! <button onClick={() => {
         onLogout()
