@@ -30,12 +30,12 @@ import {
   
   function* checkLogin() {
     try {
-    //   const res = yield callApiCheckLogin();
-    // 用call是為了可以被測試，因為return 一個plain Object
+      // const res = yield callApiCheckLogin();
+      // 用call是為了可以被測試，因為return 一個plain Object
       const res = yield call(callApiCheckLogin);
-    //   console.log(call(callApiCheckLogin))
-      const data = yield res.json();
-      console.log('saga', data);
+      // console.log(call(callApiCheckLogin))
+      // const data = yield res.json();
+      // console.log('saga', data);
       if(res.status < 400) {
         yield put(checkIsLogin())
       } else if(res.status === 401) {
@@ -57,13 +57,12 @@ import {
       const res = yield call(callApiLoginFlow, {email: action.email, password: action.password});
       if(res.status < 400) {
         const data = yield res.json();
-        console.log('>>', data);
         if(data.code === 404) {
           // 登入失敗 error: invalid email, password or identity.
-          console.log(data.error);
+          // console.log(data.error);
           yield put(loginFail(data.error))
         } else {
-          console.log('successful');
+          // console.log('successful');
           yield put(loginSuccess())
         }
       } else {
@@ -80,8 +79,7 @@ import {
 
   function* logoutFlow() {
     try {
-      const res = yield call(callApiLogout);
-      console.log(res);
+      yield call(callApiLogout);
       yield put(logoutSuccess());
     } catch(error) {
       console.log(error);
