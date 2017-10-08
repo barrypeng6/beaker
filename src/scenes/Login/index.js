@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import fakeAuth from '../../api.js';
+import { connect } from 'react-redux';
+import { loginFlow } from '../../actions'
+
+const mapStateToProps = (state) => {
+  return {
+    loginStatus: state.loginStatus
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLogin: () => {
+      dispatch(loginFlow())
+    }
+  };
+}
 
 class Login extends Component {
-    state = {
-      redirectToReferrer: false,
-      data: {}
-    }
-  
-    // 內部使用的function 字首加底線（_）
     _login = () => {
-      fakeAuth.authenticate((data) => {
-        this.setState({ redirectToReferrer: true, data })
-      })
+      console.log('login request');
+      this.props.onLogin();
     }
   
     render() {
       const { from } = this.props.location.state || { from: { pathname: '/' } };
-      const { redirectToReferrer } = this.state;
-      console.log(fakeAuth.isAuthenticated)
       return (
-        redirectToReferrer && fakeAuth.isAuthenticated ? <Redirect to={from}/>
+        this.props.loginStatus ? <Redirect to={from}/>
         : <div>
           <p>You must log in to view the page at {from.pathname}</p>
           <button onClick={this._login}>Log in</button>
@@ -29,4 +35,4 @@ class Login extends Component {
     }
   }
 
-  export default Login;
+  export default connect(mapStateToProps, mapDispatchToProps)(Login);
