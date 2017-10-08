@@ -6,21 +6,22 @@ import { loginFlow } from '../../actions'
 const mapStateToProps = (state) => {
   return {
     isLogining: state.loginStatus.isLogining,
-    isLogin: state.loginStatus.isLogin
+    isLogin: state.loginStatus.isLogin,
+    error: state.loginStatus.error
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLogin: () => {
-      dispatch(loginFlow())
+    onLogin: (email, password) => {
+      dispatch(loginFlow(email, password))
     }
   };
 }
 
 class Login extends Component {
     render() {
-      const { isLogin, isLogining, onLogin } = this.props;
+      const { isLogin, isLogining, onLogin, error } = this.props;
       const { from } = this.props.location.state || { from: { pathname: '/' } };
       return (
         isLogin ? <Redirect to={from}/>
@@ -28,9 +29,10 @@ class Login extends Component {
           <p>You must log in to view the page at {from.pathname}</p>
           {isLogining ? <span>loading...</span>
             : <button onClick={() => {
-                onLogin();
+                onLogin('annie@meepshop.com', '123456');
               }}
             >Log in</button>}
+            <div style={{color: 'red'}}>{error}</div>
         </div>
       );
     }

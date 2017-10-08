@@ -47,20 +47,22 @@ function checkIsLogout() {
   }
 }
 
-export function loginFlow() {
+export function loginFlow(email = '', password = '') {
   return async (dispatch, getState) => {
     dispatch({type: 'IS_LOGINING'});
     const res = await fetch('https://api.stage.meepcloud.com/auth/login', {
       method: 'POST',
       headers: headers,
       credentials: 'include',
-      body: JSON.stringify({email: "annie@meepshop.com", password: "123456"})
+      body: JSON.stringify({email, password})
     });
     if(res.status < 400) {
       const data = await res.json();
       console.log(data);
       if(data.code === 404) {
-        alert(data.error);
+        // 登入失敗 error: invalid email, password or identity.
+        console.log(data.error);
+        dispatch(loginFail(data.error));
       } else {
         console.log('successful');
         dispatch(loginSuccess());
@@ -77,9 +79,10 @@ function loginSuccess() {
   }
 }
 
-function loginFail() {
+function loginFail(error) {
   return {
-    type: 'LOGIN_FAIL'
+    type: 'LOGIN_FAIL',
+    error
   }
 }
 

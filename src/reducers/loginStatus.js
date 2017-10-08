@@ -46,7 +46,8 @@ const loginStatus = (state = initialState, action) => {
       return {
         isChecking: false,
         isLogining: false,
-        isLogin: false
+        isLogin: false,
+        error: action.error
       };
     // 登出完成
     case 'LOGOUT':
