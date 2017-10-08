@@ -1,3 +1,15 @@
+import {
+  CHECK_LOGIN_REQUEST,
+  CHECK_IS_LOGIN,
+  CHECK_IS_LOGOUT,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAIL
+} from '../actions';
+
 const initialState = {
   isChecking: false, // 是否正在等待檢查登入狀態動作完成
   isLogining: false, // 是否正在等待登入動作完成
@@ -7,50 +19,64 @@ const initialState = {
 const loginStatus = (state = initialState, action) => {
   switch(action.type) {
     // 正在等待檢查登入狀態動作完成
-    case 'IS_CHECKING': 
+    case CHECK_LOGIN_REQUEST: 
     return {
       isChecking: true,
       isLogining: false,
       isLogin: false
     }
     // 正在等待登入動作完成
-    case 'IS_LOGINING': 
+    case LOGIN_REQUEST: 
       return {
         isChecking: false,
         isLogining: true,
         isLogin: false
       }
     // 檢查完成，已登入
-    case 'CHECK_IS_LOGIN':
+    case CHECK_IS_LOGIN:
       return {
         isChecking: false,
         isLogining: false,
         isLogin: true
       };
     // 檢查完成，未登入
-    case 'CHECK_IS_LOGOUT':
+    case CHECK_IS_LOGOUT:
       return {
         isChecking: false,
         isLogining: false,
         isLogin: false
       };
     // 登入動作完成，登入成功
-    case 'LOGIN_SUCCESS':
+    case LOGIN_SUCCESS:
       return {
         isChecking: false,
         isLogining: false,
         isLogin: true
       };
     // 登入動作完成，登入失敗
-    case 'LOGIN_FAIL':
+    case LOGIN_FAIL:
       return {
         isChecking: false,
         isLogining: false,
         isLogin: false,
         error: action.error
       };
-    // 登出完成
-    case 'LOGOUT':
+    // 發出登出請求
+    case LOGOUT_REQUEST:
+      return {
+        isChecking: true,
+        isLogining: false,
+        isLogin: false
+      };
+    // 登出成功
+    case LOGOUT_SUCCESS:
+      return {
+        isChecking: false,
+        isLogining: false,
+        isLogin: false
+      };
+    // 登出失敗
+    case LOGOUT_FAIL:
       return {
         isChecking: false,
         isLogining: false,

@@ -9,7 +9,7 @@ import { PrivateRoute, NoMatchRoute } from './components';
 import Login from './scenes/Login';
 import Home from './scenes/Home';
 import { connect } from 'react-redux';
-import { checkLoginStatus } from './actions';
+import { checkLoginRequest } from './actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -21,7 +21,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onCheckLogin: () => {
-        dispatch(checkLoginStatus())
+        dispatch(checkLoginRequest())
     }
   };
 }

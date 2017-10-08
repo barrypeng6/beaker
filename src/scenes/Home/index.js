@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutFlow } from '../../actions';
+import { logoutRequest } from '../../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogout: () => {
-      dispatch(logoutFlow());
+      dispatch(logoutRequest());
     }
   };
 }

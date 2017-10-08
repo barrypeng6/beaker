@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginFlow } from '../../actions'
+import { loginRequest } from '../../actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogin: (email, password) => {
-      dispatch(loginFlow(email, password))
+      dispatch(loginRequest(email, password))
     }
   };
 }
