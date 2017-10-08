@@ -1,3 +1,13 @@
+export const IS_CHECKING = 'IS_CHECKING';
+export const CHECK_IS_LOGIN = 'CHECK_IS_LOGIN';
+export const CHECK_IS_LOGOUT = 'CHECK_IS_LOGOUT';
+
+export const IS_LOGINING = 'IS_LOGINING';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+
+export const LOGOUT = 'LOGOUT';
+
 const headers = new Headers({
   "Content-Type": "application/json",
   'x-meepshop-domain': 'admin.stage.meepcloud.com'
@@ -5,7 +15,7 @@ const headers = new Headers({
 
 export function checkLoginStatus() {
   return async (dispatch, getState) => {
-    dispatch({type: 'IS_CHECKING'});
+    dispatch(isChecking());
     const res = await fetch('https://api.stage.meepcloud.com/graphql', {
       method: 'POST',
       headers: headers,
@@ -35,21 +45,27 @@ export function checkLoginStatus() {
   }
 }
 
+function isChecking() {
+  return {
+    type: IS_CHECKING
+  }
+}
+
 function checkIsLogin() {
   return {
-    type: 'CHECK_IS_LOGIN'
+    type: CHECK_IS_LOGIN
   }
 }
 
 function checkIsLogout() {
   return {
-    type: 'CHECK_IS_LOGOUT'
+    type: CHECK_IS_LOGOUT
   }
 }
 
 export function loginFlow(email = '', password = '') {
   return async (dispatch, getState) => {
-    dispatch({type: 'IS_LOGINING'});
+    dispatch(isLogining());
     const res = await fetch('https://api.stage.meepcloud.com/auth/login', {
       method: 'POST',
       headers: headers,
@@ -73,15 +89,21 @@ export function loginFlow(email = '', password = '') {
   }
 }
 
+function isLogining() {
+  return {
+    type: IS_LOGINING
+  }
+}
+
 function loginSuccess() {
   return {
-    type: 'LOGIN_SUCCESS'
+    type: LOGIN_SUCCESS
   }
 }
 
 function loginFail(error) {
   return {
-    type: 'LOGIN_FAIL',
+    type: LOGIN_FAIL,
     error
   }
 }
@@ -100,6 +122,6 @@ export function logoutFlow() {
 
 function logout() {
   return {
-    type: 'LOGOUT'
+    type: LOGOUT
   }
 }
