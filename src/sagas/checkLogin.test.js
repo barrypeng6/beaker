@@ -4,7 +4,7 @@ import { callApiCheckLogin } from '../api';
 import {
   CHECK_LOGIN_REQUEST,
   checkLoginSuccess,
-  checkLoginFail
+  checkLoginFailure
 } from '../actions';
 
 describe('sagas/ checkLogin', () => {
@@ -35,7 +35,7 @@ describe('sagas/ checkLogin', () => {
 
   // 測試項目：是否有正確處理 failure response
   test('fail', () => {
-    const expected = put(checkLoginFail());
+    const expected = put(checkLoginFailure());
     const actual = iterator.throw('check login fial').value;
     expect(actual).toEqual(expected);
   });

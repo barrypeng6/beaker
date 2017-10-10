@@ -7,7 +7,7 @@ import {
 import {
   LOGIN_REQUEST,
   loginSuccess,
-  loginFail
+  loginFailure
 } from '../actions';
 
 import {
@@ -26,7 +26,7 @@ export function* loginFlow(action) {
       if(data.code === 404) {
         // 登入失敗 error: invalid email, password or identity.
         // console.log(data.error);
-        yield put(loginFail(data.error))
+        yield put(loginFailure(data.error))
       } else {
         // console.log('successful');
         yield put(loginSuccess())

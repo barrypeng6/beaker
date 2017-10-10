@@ -1,13 +1,13 @@
 import {
   CHECK_LOGIN_REQUEST,
   CHECK_LOGIN_SUCCESS,
-  CHECK_LOGIN_FAIL,
+  CHECK_LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAIL,
+  LOGIN_FAILURE,
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
-  LOGOUT_FAIL
+  LOGOUT_FAILURE
 } from '../actions';
 
 const initialState = {
@@ -40,7 +40,7 @@ const loginStatus = (state = initialState, action) => {
         isLogin: true
       };
     // 檢查完成，登入失敗
-    case CHECK_LOGIN_FAIL:
+    case CHECK_LOGIN_FAILURE:
       return {
         isChecking: false,
         isLogining: false,
@@ -54,7 +54,7 @@ const loginStatus = (state = initialState, action) => {
         isLogin: true
       };
     // 登入動作完成，登入失敗
-    case LOGIN_FAIL:
+    case LOGIN_FAILURE:
       return {
         isChecking: false,
         isLogining: false,
@@ -76,7 +76,7 @@ const loginStatus = (state = initialState, action) => {
         isLogin: false
       };
     // 登出失敗
-    case LOGOUT_FAIL:
+    case LOGOUT_FAILURE:
       return {
         isChecking: false,
         isLogining: false,

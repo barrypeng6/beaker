@@ -1,14 +1,14 @@
 export const CHECK_LOGIN_REQUEST = 'CHECK_LOGIN_REQUEST';
 export const CHECK_LOGIN_SUCCESS = 'CHECK_LOGIN_SUCCESS';
-export const CHECK_LOGIN_FAIL = 'CHECK_LOGIN_FAIL';
+export const CHECK_LOGIN_FAILURE = 'CHECK_LOGIN_FAILURE';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-export const LOGOUT_FAIL = 'LOGOUT_FAIL';
+export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
 export function checkLoginRequest() {
   return {
@@ -22,9 +22,9 @@ export function checkLoginSuccess() {
   }
 }
 
-export function checkLoginFail() {
+export function checkLoginFailure() {
   return {
-    type: CHECK_LOGIN_FAIL
+    type: CHECK_LOGIN_FAILURE
   }
 }
 
@@ -42,9 +42,9 @@ export function loginSuccess() {
   }
 }
 
-export function loginFail(error) {
+export function loginFailure(error) {
   return {
-    type: LOGIN_FAIL,
+    type: LOGIN_FAILURE,
     error
   }
 }
@@ -61,8 +61,8 @@ export function logoutSuccess() {
   }
 }
 
-export function logoutFail() {
+export function logoutFailure() {
   return {
-    type: LOGOUT_FAIL
+    type: LOGOUT_FAILURE
   }
 }

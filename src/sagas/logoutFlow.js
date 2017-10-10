@@ -7,7 +7,7 @@ import {
 import {
   LOGOUT_REQUEST,
   logoutSuccess,
-  logoutFail
+  logoutFailure
 } from '../actions';
 
 import {
@@ -24,6 +24,6 @@ export function* logoutFlow() {
     yield put(logoutSuccess());
   } catch(error) {
     console.log(error);
-    yield put(logoutFail());
+    yield put(logoutFailure());
   }
 }
