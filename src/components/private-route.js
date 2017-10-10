@@ -1,13 +1,11 @@
 import React from 'react';
-import {
-  Route,
-  Redirect
-} from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import SideBar from './side-bar';
 
 const PrivateRoute = ({ component: Component, isLogin, onLogout }) => (
   <Route render={(props) => {
     return (
+      // 判斷是否登入，如果未登入則導到/login
       isLogin ? (
         <div>
           <SideBar onLogout={onLogout}/>
