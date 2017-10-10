@@ -1,14 +1,4 @@
-import {
-  CHECK_LOGIN_REQUEST,
-  CHECK_LOGIN_SUCCESS,
-  CHECK_LOGIN_FAILURE,
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-  LOGOUT_REQUEST,
-  LOGOUT_SUCCESS,
-  LOGOUT_FAILURE
-} from '../actions';
+import * as Types from '../constants/actionTypes'
 
 const initialState = {
   isChecking: false, // 是否正在等待檢查登入狀態動作完成
@@ -18,65 +8,65 @@ const initialState = {
 
 const loginStatus = (state = initialState, action) => {
   switch(action.type) {
-    // 正在等待檢查登入狀態動作完成
-    case CHECK_LOGIN_REQUEST: 
-    return {
-      isChecking: true,
-      isLogining: false,
-      isLogin: false
-    }
-    // 正在等待登入動作完成
-    case LOGIN_REQUEST: 
+    // 檢查登入請求
+    case Types.CHECK_LOGIN_REQUEST: 
+      return {
+        isChecking: true,
+        isLogining: false,
+        isLogin: false
+      };
+    // 檢查登入成功
+    case Types.CHECK_LOGIN_SUCCESS:
+      return {
+        isChecking: false,
+        isLogining: false,
+        isLogin: true
+      };
+    // 檢查登入失敗
+    case Types.CHECK_LOGIN_FAILURE:
+      return {
+        isChecking: false,
+        isLogining: false,
+        isLogin: false
+      };
+    // 登入請求
+    case Types.LOGIN_REQUEST: 
       return {
         isChecking: false,
         isLogining: true,
         isLogin: false
-      }
-    // 檢查完成，登入成功
-    case CHECK_LOGIN_SUCCESS:
+      };
+    // 登入成功
+    case Types.LOGIN_SUCCESS:
       return {
         isChecking: false,
         isLogining: false,
         isLogin: true
       };
-    // 檢查完成，登入失敗
-    case CHECK_LOGIN_FAILURE:
-      return {
-        isChecking: false,
-        isLogining: false,
-        isLogin: false
-      };
-    // 登入動作完成，登入成功
-    case LOGIN_SUCCESS:
-      return {
-        isChecking: false,
-        isLogining: false,
-        isLogin: true
-      };
-    // 登入動作完成，登入失敗
-    case LOGIN_FAILURE:
+    // 登入失敗
+    case Types.LOGIN_FAILURE:
       return {
         isChecking: false,
         isLogining: false,
         isLogin: false,
         error: action.error
       };
-    // 發出登出請求
-    case LOGOUT_REQUEST:
+    // 登出請求
+    case Types.LOGOUT_REQUEST:
       return {
         isChecking: true,
         isLogining: false,
         isLogin: false
       };
     // 登出成功
-    case LOGOUT_SUCCESS:
+    case Types.LOGOUT_SUCCESS:
       return {
         isChecking: false,
         isLogining: false,
         isLogin: false
       };
     // 登出失敗
-    case LOGOUT_FAILURE:
+    case Types.LOGOUT_FAILURE:
       return {
         isChecking: false,
         isLogining: false,

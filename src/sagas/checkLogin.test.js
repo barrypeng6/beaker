@@ -1,8 +1,8 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { watchCheckLogin, checkLogin } from './checkLogin';
 import { callApiCheckLogin } from '../api';
+import { CHECK_LOGIN_REQUEST } from '../constants/actionTypes';
 import {
-  CHECK_LOGIN_REQUEST,
   checkLoginSuccess,
   checkLoginFailure
 } from '../actions';

@@ -1,7 +1,6 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
-
+import { CHECK_LOGIN_REQUEST } from '../constants/actionTypes';
 import {
-  CHECK_LOGIN_REQUEST,
   checkLoginSuccess,
   checkLoginFailure
 } from '../actions';

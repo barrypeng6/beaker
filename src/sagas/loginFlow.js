@@ -3,9 +3,8 @@ import {
   call,
   put
 } from 'redux-saga/effects';
-
+import { LOGIN_REQUEST } from '../constants/actionTypes';
 import {
-  LOGIN_REQUEST,
   loginSuccess,
   loginFailure
 } from '../actions';
