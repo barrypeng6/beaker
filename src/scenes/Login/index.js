@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginRequest } from '../../actions'
 
@@ -47,4 +47,4 @@ class Login extends Component {
     }
   }
 
-  export default connect(mapStateToProps, mapDispatchToProps)(Login);
+  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

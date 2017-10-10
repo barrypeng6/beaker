@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state) => {
   return {
@@ -17,4 +18,4 @@ const Orders = () => (
   </div>
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Orders);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Orders));
