@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import { PrivateRoute, NoMatchRoute } from './components';
 import Login from './scenes/Login';
 import Home from './scenes/Home';
+import Orders from './scenes/Orders';
 import { connect } from 'react-redux';
 import { checkLoginRequest } from './actions';
 
@@ -39,6 +40,7 @@ class Root extends Component {
         <Switch>
           <Route path="/login" component={Login}/>
           <PrivateRoute exact path="/" component={Home} isLogin={isLogin}/>
+          <PrivateRoute exact path="/orders" component={Orders} isLogin={isLogin}/>
           <NoMatchRoute/>
         </Switch>
       </Router>

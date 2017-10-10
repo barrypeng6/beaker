@@ -1,8 +1,12 @@
 import {
     takeEvery,
+    take,
+    select,
     call,
     put,
-    all
+    all,
+    fork,
+    cancel
   } from 'redux-saga/effects'
   import {
     CHECK_LOGIN_REQUEST,
@@ -52,9 +56,9 @@ import {
       yield takeEvery(LOGIN_REQUEST, loginFlow)
   }
 
-  function* loginFlow(action) {
+  function* auth({email, password}) {
     try {
-      const res = yield call(callApiLoginFlow, {email: action.email, password: action.password});
+      const res = yield call(callApiLoginFlow, {email, password});
       if(res.status < 400) {
         const data = yield res.json();
         if(data.code === 404) {
@@ -73,6 +77,14 @@ import {
     }
   }
 
+  function* loginFlow(action) {
+    const task = yield fork(auth, {email: action.email, password: action.password});
+    yield take('LOGIN_CANCEL');
+    yield cancel(task);
+    yield put(logoutFail());
+    
+  }
+
   function* watchLogout() {
     yield takeEvery(LOGOUT_REQUEST, logoutFlow);
   }
@@ -87,11 +99,21 @@ import {
     }
   }
 
+  // function* watchAndLog() {
+  //   while (true) {
+  //     const action = yield take('*')
+  //     const state = yield select()
+  
+  //     console.log('action', action)
+  //     console.log('state after', state)
+  //   }
+  // }
+
   function* rootSaga() {
     yield all([
         watchCheckLogin(),
         watchLoginFlow(),
-        watchLogout()
+        watchLogout(),
     ])
 }
 
