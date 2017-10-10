@@ -6,11 +6,9 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PrivateRoute, NoMatchRoute } from './components';
-import Login from './scenes/Login';
-import Home from './scenes/Home';
-import Orders from './scenes/Orders';
+import { Login, Home, Orders } from './scenes';
 import { connect } from 'react-redux';
-import { checkLoginRequest } from './actions';
+import { checkLoginRequest, logoutRequest } from './actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -22,7 +20,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onCheckLogin: () => {
-        dispatch(checkLoginRequest())
+      dispatch(checkLoginRequest())
+    },
+    onLogout: () => {
+      dispatch(logoutRequest());
     }
   };
 }
@@ -32,17 +33,19 @@ class Root extends Component {
     !this.props.isLogin && this.props.onCheckLogin();
   }
   render() {
-    const { store, isLogin, isChecking } = this.props;
+    const { store, isLogin, isChecking, onLogout } = this.props;
     return (
       isChecking ? <div>Loading...</div> :
       <Provider store={store}>
       <Router>
-        <Switch>
-          <Route path="/login" component={Login}/>
-          <PrivateRoute exact path="/" component={Home} isLogin={isLogin}/>
-          <PrivateRoute exact path="/orders" component={Orders} isLogin={isLogin}/>
-          <NoMatchRoute/>
-        </Switch>
+        <div>
+          <Switch>
+            <Route path="/login" component={Login}/>
+            <PrivateRoute exact path="/" component={Home} isLogin={isLogin} onLogout={onLogout}/>
+            <PrivateRoute exact path="/orders" component={Orders} isLogin={isLogin}  onLogout={onLogout}/>
+            <NoMatchRoute/>
+          </Switch>
+        </div>
       </Router>
     </Provider>
     );

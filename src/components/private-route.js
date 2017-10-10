@@ -3,12 +3,16 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
+import SideBar from './side-bar';
 
-const PrivateRoute = ({ component: Component, isLogin }) => (
+const PrivateRoute = ({ component: Component, isLogin, onLogout }) => (
   <Route render={(props) => {
     return (
       isLogin ? (
-        <Component {...props}/>
+        <div>
+          <SideBar onLogout={onLogout}/>
+          <Component {...props}/>
+        </div>
       ) : (
         <Redirect to={{
           pathname: '/login',
