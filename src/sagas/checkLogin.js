@@ -14,12 +14,8 @@ export function* watchCheckLogin() {
 
 export function* checkLogin() {
   try {
-    // const res = yield callApiCheckLogin();
     // 用call是為了可以被測試，因為return 一個plain Object
     const res = yield call(callApiCheckLogin);
-    // console.log(call(callApiCheckLogin))
-    // const data = yield res.json();
-    // console.log('saga', data);
     if(res.status < 400) {
       yield put(checkLoginSuccess())
     } else if(res.status === 401) {
