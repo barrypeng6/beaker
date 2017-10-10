@@ -1,6 +1,6 @@
 export const CHECK_LOGIN_REQUEST = 'CHECK_LOGIN_REQUEST';
-export const CHECK_IS_LOGIN = 'CHECK_IS_LOGIN';
-export const CHECK_IS_LOGOUT = 'CHECK_IS_LOGOUT';
+export const CHECK_LOGIN_SUCCESS = 'CHECK_LOGIN_SUCCESS';
+export const CHECK_LOGIN_FAIL = 'CHECK_LOGIN_FAIL';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -16,15 +16,15 @@ export function checkLoginRequest() {
   }
 }
 
-export function checkIsLogin() {
+export function checkLoginSuccess() {
   return {
-    type: CHECK_IS_LOGIN
+    type: CHECK_LOGIN_SUCCESS
   }
 }
 
-export function checkIsLogout() {
+export function checkLoginFail() {
   return {
-    type: CHECK_IS_LOGOUT
+    type: CHECK_LOGIN_FAIL
   }
 }
 

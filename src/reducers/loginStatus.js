@@ -1,7 +1,7 @@
 import {
   CHECK_LOGIN_REQUEST,
-  CHECK_IS_LOGIN,
-  CHECK_IS_LOGOUT,
+  CHECK_LOGIN_SUCCESS,
+  CHECK_LOGIN_FAIL,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -32,15 +32,15 @@ const loginStatus = (state = initialState, action) => {
         isLogining: true,
         isLogin: false
       }
-    // 檢查完成，已登入
-    case CHECK_IS_LOGIN:
+    // 檢查完成，登入成功
+    case CHECK_LOGIN_SUCCESS:
       return {
         isChecking: false,
         isLogining: false,
         isLogin: true
       };
-    // 檢查完成，未登入
-    case CHECK_IS_LOGOUT:
+    // 檢查完成，登入失敗
+    case CHECK_LOGIN_FAIL:
       return {
         isChecking: false,
         isLogining: false,
