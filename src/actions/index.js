@@ -12,9 +12,10 @@ export function checkLoginSuccess() {
   }
 }
 
-export function checkLoginFailure() {
+export function checkLoginFailure(error) {
   return {
-    type: Types.CHECK_LOGIN_FAILURE
+    type: Types.CHECK_LOGIN_FAILURE,
+    error
   }
 }
 
@@ -51,8 +52,9 @@ export function logoutSuccess() {
   }
 }
 
-export function logoutFailure() {
+export function logoutFailure(error) {
   return {
-    type: Types.LOGOUT_FAILURE
+    type: Types.LOGOUT_FAILURE,
+    error
   }
 }
