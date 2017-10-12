@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './root';
+import Route from './Route';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers';
 import createSagaMiddleware from 'redux-saga';
@@ -18,6 +18,6 @@ const store = createStore(
 sagaMiddleware.run(rootSaga)
 
 ReactDOM.render(
-    <Root store={store}/>,
+    <Route store={store}/>,
     document.getElementById('root')
 );

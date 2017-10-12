@@ -1,8 +1,8 @@
 import LoadingComponent from './LoadingComponent';
-import PrivateRoute from './private-route';
-import NoMatchRoute from './nomatch-route';
-import LogoutButton from './logout-button';
-import SideBar from './side-bar';
+import PrivateRoute from './PrivateRoute';
+import NoMatchRoute from './NoMatchRoute';
+import LogoutButton from './LogoutButton';
+import SideBar from './SideBar';
 
 // global components
 

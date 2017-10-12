@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LogoutButton from './logout-button';
+import LogoutButton from './LogoutButton';
 
 const SideBar = ({ onLogout }) => (
   <div>
