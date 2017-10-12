@@ -5,10 +5,14 @@ import {
   Switch
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import asyncComponent from './components/AsyncComponent';
 import { PrivateRoute, NoMatchRoute } from './components';
-import { Login, Home, Orders } from './scenes';
 import { connect } from 'react-redux';
 import { checkLoginRequest, logoutRequest } from './actions';
+
+const Home = asyncComponent(() => import('./scenes/Home'));
+const Login = asyncComponent(() => import('./scenes/Login'));
+const Orders = asyncComponent(() => import('./scenes/Orders'));
 
 const mapStateToProps = (state) => {
   return {
@@ -37,17 +41,15 @@ class Root extends Component {
     return (
       isChecking ? <div>Loading...</div> :
       <Provider store={store}>
-      <Router>
-        <div>
-          <Switch>
-            <Route path="/login" component={Login}/>
-            <PrivateRoute exact path="/" component={Home} isLogin={isLogin} onLogout={onLogout}/>
-            <PrivateRoute exact path="/orders" component={Orders} isLogin={isLogin}  onLogout={onLogout}/>
-            <NoMatchRoute/>
-          </Switch>
-        </div>
-      </Router>
-    </Provider>
+        <Router>
+            <Switch>
+              <Route path="/login" component={Login}/>
+              <PrivateRoute exact path="/" component={Home} isLogin={isLogin} onLogout={onLogout}/>
+              <PrivateRoute exact path="/orders" component={Orders} isLogin={isLogin}  onLogout={onLogout}/>
+              <NoMatchRoute/>
+            </Switch>
+        </Router>
+      </Provider>
     );
   }
 }
