@@ -47,6 +47,8 @@ const mapDispatchToProps = (dispatch) => {
 class Root extends Component {
   componentDidMount() {
     !this.props.isLogin && this.props.onCheckLogin();
+    Home.preload();
+    Orders.preload();
   }
   render() {
     const { store, isLogin, isChecking, onLogout } = this.props;
