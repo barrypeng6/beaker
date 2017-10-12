@@ -27,7 +27,7 @@ class Login extends Component {
         isLogin ? <Redirect to={from}/>
         : <div>
           <p>You must log in to view the page at {from.pathname}</p>
-          {isLogining ? <span>{'loading...'}</span>
+          {isLogining ? <span>{'is logging...'}</span>
             : <button onClick={() => {
                 onLogin('annie@meepshop.com', '123456');
               }}

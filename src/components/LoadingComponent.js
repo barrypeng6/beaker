@@ -3,7 +3,7 @@ import React from 'react';
 const LoadingComponent = ({isLoading, error}) => {
   // Handle the loading state
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Chunk is loading...</div>;
   }
   // Handle the error state
   else if (error) {

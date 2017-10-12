@@ -47,13 +47,13 @@ const mapDispatchToProps = (dispatch) => {
 class Root extends Component {
   componentDidMount() {
     !this.props.isLogin && this.props.onCheckLogin();
-    Home.preload();
-    Orders.preload();
+    // Home.preload();
+    // Orders.preload();
   }
   render() {
     const { store, isLogin, isChecking, onLogout } = this.props;
     return (
-      isChecking ? <div>Loading...</div> :
+      isChecking ? <div>Checking Login...</div> :
       <Provider store={store}>
         <Router>
             <Switch>
