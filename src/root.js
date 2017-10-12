@@ -5,14 +5,26 @@ import {
   Switch
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import asyncComponent from './components/AsyncComponent';
+import Loadable from 'react-loadable';
+import { LoadingComponent } from './components';
 import { PrivateRoute, NoMatchRoute } from './components';
 import { connect } from 'react-redux';
 import { checkLoginRequest, logoutRequest } from './actions';
 
-const Home = asyncComponent(() => import('./scenes/Home'));
-const Login = asyncComponent(() => import('./scenes/Login'));
-const Orders = asyncComponent(() => import('./scenes/Orders'));
+const Home = Loadable({
+  loader: () => import('./scenes/Home'),
+  loading: LoadingComponent
+});
+
+const Login = Loadable({
+  loader: () => import('./scenes/Login'),
+  loading: LoadingComponent
+});
+
+const Orders = Loadable({
+  loader: () => import('./scenes/Orders'),
+  loading: LoadingComponent
+});
 
 const mapStateToProps = (state) => {
   return {
