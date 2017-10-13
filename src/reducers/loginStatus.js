@@ -1,3 +1,5 @@
+import * as Types from '../constants/actionTypes'
+
 const initialState = {
   isChecking: false, // 是否正在等待檢查登入狀態動作完成
   isLogining: false, // 是否正在等待登入動作完成
@@ -6,51 +8,65 @@ const initialState = {
 
 const loginStatus = (state = initialState, action) => {
   switch(action.type) {
-    // 正在等待檢查登入狀態動作完成
-    case 'IS_CHECKING': 
-    return {
-      isChecking: true,
-      isLogining: false,
-      isLogin: false
-    }
-    // 正在等待登入動作完成
-    case 'IS_LOGINING': 
+    // 檢查登入請求
+    case Types.CHECK_LOGIN_REQUEST: 
+      return {
+        isChecking: true,
+        isLogining: false,
+        isLogin: false
+      };
+    // 檢查登入成功
+    case Types.CHECK_LOGIN_SUCCESS:
+      return {
+        isChecking: false,
+        isLogining: false,
+        isLogin: true
+      };
+    // 檢查登入失敗
+    case Types.CHECK_LOGIN_FAILURE:
+      return {
+        isChecking: false,
+        isLogining: false,
+        isLogin: false
+      };
+    // 登入請求
+    case Types.LOGIN_REQUEST: 
       return {
         isChecking: false,
         isLogining: true,
         isLogin: false
-      }
-    // 檢查完成，已登入
-    case 'CHECK_IS_LOGIN':
+      };
+    // 登入成功
+    case Types.LOGIN_SUCCESS:
       return {
         isChecking: false,
         isLogining: false,
         isLogin: true
       };
-    // 檢查完成，未登入
-    case 'CHECK_IS_LOGOUT':
-      return {
-        isChecking: false,
-        isLogining: false,
-        isLogin: false
-      };
-    // 登入動作完成，登入成功
-    case 'LOGIN_SUCCESS':
-      return {
-        isChecking: false,
-        isLogining: false,
-        isLogin: true
-      };
-    // 登入動作完成，登入失敗
-    case 'LOGIN_FAIL':
+    // 登入失敗
+    case Types.LOGIN_FAILURE:
       return {
         isChecking: false,
         isLogining: false,
         isLogin: false,
         error: action.error
       };
-    // 登出完成
-    case 'LOGOUT':
+    // 登出請求
+    case Types.LOGOUT_REQUEST:
+      return {
+        isChecking: true,
+        isLogining: false,
+        isLogin: false
+      };
+    // 登出成功
+    case Types.LOGOUT_SUCCESS:
+      return {
+        isChecking: false,
+        isLogining: false,
+        isLogin: false
+      };
+    // 登出失敗
+    case Types.LOGOUT_FAILURE:
       return {
         isChecking: false,
         isLogining: false,

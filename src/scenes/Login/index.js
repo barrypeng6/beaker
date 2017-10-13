@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginFlow } from '../../actions'
+import { loginRequest } from '../../actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogin: (email, password) => {
-      dispatch(loginFlow(email, password))
+      dispatch(loginRequest(email, password));
     }
   };
 }
@@ -27,7 +27,7 @@ class Login extends Component {
         isLogin ? <Redirect to={from}/>
         : <div>
           <p>You must log in to view the page at {from.pathname}</p>
-          {isLogining ? <span>loading...</span>
+          {isLogining ? <span>{'is logging...'}</span>
             : <button onClick={() => {
                 onLogin('annie@meepshop.com', '123456');
               }}
@@ -38,4 +38,4 @@ class Login extends Component {
     }
   }
 
-  export default connect(mapStateToProps, mapDispatchToProps)(Login);
+  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

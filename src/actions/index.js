@@ -1,105 +1,60 @@
-const headers = new Headers({
-  "Content-Type": "application/json",
-  'x-meepshop-domain': 'admin.stage.meepcloud.com'
-});
+import * as Types from '../constants/actionTypes'
 
-export function checkLoginStatus() {
-  return async (dispatch, getState) => {
-    dispatch({type: 'IS_CHECKING'});
-    const res = await fetch('https://api.stage.meepcloud.com/graphql', {
-      method: 'POST',
-      headers: headers,
-      credentials: 'include',
-      body: JSON.stringify({
-      query: `
-        query Root($search: searchInputObjectType) {
-        getStoreList (search: $search) {
-            data {
-              id
-            }
-          }
-        }`
-      })
-      }); 
-      if(res.status < 400) {
-        const data = await res.json();
-        if(data) {
-          dispatch(checkIsLogin());
-        } else {
-          console.log('error', data)
-        }
-      } else {
-        console.log('401未授權');
-        dispatch(checkIsLogout());
-      }
-  }
-}
-
-function checkIsLogin() {
+export function checkLoginRequest() {
   return {
-    type: 'CHECK_IS_LOGIN'
+    type: Types.CHECK_LOGIN_REQUEST
   }
 }
 
-function checkIsLogout() {
+export function checkLoginSuccess() {
   return {
-    type: 'CHECK_IS_LOGOUT'
+    type: Types.CHECK_LOGIN_SUCCESS
   }
 }
 
-export function loginFlow(email = '', password = '') {
-  return async (dispatch, getState) => {
-    dispatch({type: 'IS_LOGINING'});
-    const res = await fetch('https://api.stage.meepcloud.com/auth/login', {
-      method: 'POST',
-      headers: headers,
-      credentials: 'include',
-      body: JSON.stringify({email, password})
-    });
-    if(res.status < 400) {
-      const data = await res.json();
-      console.log(data);
-      if(data.code === 404) {
-        // 登入失敗 error: invalid email, password or identity.
-        console.log(data.error);
-        dispatch(loginFail(data.error));
-      } else {
-        console.log('successful');
-        dispatch(loginSuccess());
-      }
-    } else {
-      alert('network error')
-    }
-  }
-}
-
-function loginSuccess() {
+export function checkLoginFailure(error) {
   return {
-    type: 'LOGIN_SUCCESS'
-  }
-}
-
-function loginFail(error) {
-  return {
-    type: 'LOGIN_FAIL',
+    type: Types.CHECK_LOGIN_FAILURE,
     error
   }
 }
 
-export function logoutFlow() {
-  return async (dispatch, getState) => {
-    dispatch(logout())
-    await fetch('https://api.stage.meepcloud.com/auth/logout', {
-      method: 'GET',
-      headers: headers,
-      credentials: 'include',
-      body: {}
-    });
+export function loginRequest(email, password) {
+  return {
+    type: Types.LOGIN_REQUEST,
+    email,
+    password
   }
 }
 
-function logout() {
+export function loginSuccess() {
   return {
-    type: 'LOGOUT'
+    type: Types.LOGIN_SUCCESS
+  }
+}
+
+export function loginFailure(error) {
+  return {
+    type: Types.LOGIN_FAILURE,
+    error
+  }
+}
+
+export function logoutRequest() {
+  return {
+    type: Types.LOGOUT_REQUEST
+  }
+}
+
+export function logoutSuccess() {
+  return {
+    type: Types.LOGOUT_SUCCESS
+  }
+}
+
+export function logoutFailure(error) {
+  return {
+    type: Types.LOGOUT_FAILURE,
+    error
   }
 }

@@ -1,39 +1,21 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutFlow } from '../../actions';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   return {
-    isLogin: state.loginStatus.isLogin
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLogout: () => {
-      dispatch(logoutFlow());
-    }
   };
 }
 
-const Home = ({ isLogin, onLogout }) => (
+const Home = () => (
   <div>
-    <LogoutButton isLogin={isLogin} onLogout={onLogout} />
     <h1>Home</h1>
   </div>
 );
 
-const LogoutButton = withRouter(({ history, isLogin, onLogout }) => (
-  isLogin ? (
-    <p>
-      Welcome! <button onClick={() => {
-        onLogout()
-      }}>Sign out</button>
-    </p>
-  ) : (
-    <p>You are not logged in.</p>
-  )
-));
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
