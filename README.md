@@ -1,17 +1,19 @@
-# meepShop 新後台 - Beaker **BETA**
+# 新後台 - Beaker **BETA**
 此專案代號：Beaker。<br>
 目的重構舊有admin架構。
 
 ### 重點更新清單
-1. react v16
-2. react-router v4
-3. redux
-4. redux-saga
-5. code splitting
-6. 
+1. React v16
+2. React Router v4
+3. Redux
+4. Redux-saga
+5. Code Splitting
+6. Jest
+7. Flow
+8. Reselect
 
 # Usage
-In this project, you can use with:
+此專案使用**Create React App**，可以使用以下script開始。
 ### `yarn` or `npm install`
 Package install.
 ### `yarn start` or `npm start`
@@ -29,10 +31,11 @@ Builds the App for Production to the `build` folder
 
 # New Feature
 ## React-router v4
+[REACT ROUTER TRAINING](https://reacttraining.com/react-router/web/guides/philosophy)
 ## Redux
 ## Redux-saga
 **!Note: 建議先了解redux-thunk, generator function**<br>
-### Flow
+### 流程
 ```js
 送出 API request =>
 畫面變為loading 畫面 =>
@@ -51,7 +54,7 @@ if (response success) {
 ES6的[dynamic `import()`](http://2ality.com/2017/01/import-operator.html#loading-code-on-demand)可以讓目很簡單處理code-splitting<br>
 可參考：[dynamic import() example](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting)
 
-此專案採用使用[react-loadble](https://github.com/thejameskyle/react-loadable)去做Route Splitting，好處是在載入chunk時，幫助我們處理loading畫面以及處理載入失敗時的錯誤狀況，另外react-loadble可以提供preload方法，幫助我們在首頁時，能夠預載下其他頁面的chunk.js<br>
+此專案採用使用[react-loadble](https://github.com/thejameskyle/react-loadable)去達成Route Splitting，好處是在載入chunk時，幫助我們處理loading畫面以及處理載入失敗時的錯誤狀況，另外react-loadble可以提供**preload**方法，幫助我們在首頁時，能夠預載下其他頁面的chunk.js<br>
 
 ### Example
 ```js
