@@ -23,17 +23,17 @@ export function* loginFlow(action) {
     if(res.status < 400) {
       const data = yield res.json();
       if(data.code === 404) {
-        // 登入失敗 error: invalid email, password or identity.
-        // console.log(data.error);
-        yield put(loginFailure(data.error))
+        // 登入失敗：帳號密碼錯誤
+        throw new Error(data.error);
       } else {
-        // console.log('successful');
-        yield put(loginSuccess())
+        // 登入成功
+        yield put(loginSuccess());
       }
     } else {
-      alert('network error')
+      // 登入失敗
+      throw new Error('network error');
     }
   } catch(error) {
-      alert(error);
+      yield put(loginFailure(error.message));
   }
 }
