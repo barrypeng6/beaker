@@ -1,5 +1,5 @@
 import * as actions from './';
-import * as Types from '../constants/actionTypes'
+import * as Types from '../constants/actionTypes';
 
 // 檢查登入：
 // Action Type: CHECK_LOGIN_REQUEST

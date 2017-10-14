@@ -1,6 +1,6 @@
 import * as Types from '../constants/actionTypes'
 
-const initialState = {
+export const initialState = {
   isChecking: false, // 是否正在等待檢查登入狀態動作完成
   isLogining: false, // 是否正在等待登入動作完成
   isLogin: false // 是否已登入
@@ -27,7 +27,8 @@ const loginStatus = (state = initialState, action) => {
       return {
         isChecking: false,
         isLogining: false,
-        isLogin: false
+        isLogin: false,
+        error: action.error
       };
     // 登入請求
     case Types.LOGIN_REQUEST: 
@@ -70,7 +71,8 @@ const loginStatus = (state = initialState, action) => {
       return {
         isChecking: false,
         isLogining: false,
-        isLogin: false
+        isLogin: true,
+        error: action.error
       };
     default:
       return state;
