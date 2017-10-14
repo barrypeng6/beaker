@@ -14,17 +14,15 @@ export function* watchCheckLogin() {
 export function* checkLogin() {
   try {
     // 用call是為了可以被測試，因為return 一個plain Object
-    const res = yield call(callApiCheckLogin);
-    if(res.status < 400) {
-      // dispatch the action to handle success
+    const data = yield call(callApiCheckLogin);
+    if(data.isLogin) {
+      // 已登入狀態
       yield put(checkLoginSuccess())
-    } else if(res.status === 401) {
-      throw new Error('check login fail');
     } else {
+      // 未登入狀態
       throw new Error('check login fail');
     }
   } catch (error) {
-    // dispatch the action to handle failure
-    yield put(checkLoginFailure());
+    yield put(checkLoginFailure(error.message));
   }
 }

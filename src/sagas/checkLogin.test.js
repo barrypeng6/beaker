@@ -25,14 +25,14 @@ describe('sagas/ checkLogin', () => {
 
   test('是否有正確處理 successful response', () => {
     const expected = put(checkLoginSuccess());
-    const getResponse = () => ({ status: 200 })
-    const actual = iterator.next(getResponse()).value;
+    const actual = iterator.next({isLogin: true}).value;
     expect(actual).toEqual(expected);
   });
 
+  const error = new Error('error');
   test('是否有正確處理 failure response', () => {
-    const expected = put(checkLoginFailure());
-    const actual = iterator.throw('check login fial').value;
+    const expected = put(checkLoginFailure(error.message));
+    const actual = iterator.throw(error).value;
     expect(actual).toEqual(expected);
   });
 });

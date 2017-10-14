@@ -29,7 +29,7 @@ class Login extends Component {
           <p>You must log in to view the page at {from.pathname}</p>
           {isLogining ? <span>{'is logging...'}</span>
             : <button onClick={() => {
-                onLogin('annie@meepshop.com', '123456');
+                onLogin('annie@meepshop.com', '123456s');
               }}
             >Log in</button>}
             <div style={{color: 'red'}}>{error}</div>

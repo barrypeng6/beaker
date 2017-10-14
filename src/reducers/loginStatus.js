@@ -27,8 +27,7 @@ const loginStatus = (state = initialState, action) => {
       return {
         isChecking: false,
         isLogining: false,
-        isLogin: false,
-        error: action.error
+        isLogin: false
       };
     // 登入請求
     case Types.LOGIN_REQUEST: 

@@ -19,19 +19,13 @@ export function* watchLoginFlow() {
 
 export function* loginFlow(action) {
   try {
-    const res = yield call(callApiLoginFlow, {email: action.email, password: action.password});
-    if(res.status < 400) {
-      const data = yield res.json();
-      if(data.code === 404) {
-        // 登入失敗：帳號密碼錯誤
-        throw new Error(data.error);
-      } else {
-        // 登入成功
-        yield put(loginSuccess());
-      }
-    } else {
+    const data = yield call(callApiLoginFlow, {email: action.email, password: action.password});
+    if(data.error) {
       // 登入失敗
-      throw new Error('network error');
+      throw new Error(data.error);
+    } else {
+      // 登入成功
+      yield put(loginSuccess());
     }
   } catch(error) {
       yield put(loginFailure(error.message));

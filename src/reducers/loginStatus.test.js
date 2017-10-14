@@ -37,8 +37,7 @@ describe('reducers/ loginStatus', () => {
     const expected = {
       isChecking: false,
       isLogining: false,
-      isLogin: false,
-      error: 'error msg'
+      isLogin: false
     };
     const actual = loginStatus(initialState, checkLoginFailure('error msg'));
     expect(actual).toEqual(expected);
