@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
 
-const NavigationBar = ({ onLogout }) => (
+const MiniDrawer = ({ onLogout }) => (
   <div>
+    MiniDrawer
     <ul style={{}}>
       <li><Link to="/">Home</Link></li>
       <li><Link to="/orders">Orders</Link></li>
@@ -12,4 +13,4 @@ const NavigationBar = ({ onLogout }) => (
   </div>
 );
 
-export default NavigationBar;
+export default MiniDrawer;
