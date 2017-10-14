@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
 
-const SideBar = ({ onLogout }) => (
+const NavigationBar = ({ onLogout }) => (
   <div>
     <ul style={{}}>
       <li><Link to="/">Home</Link></li>
@@ -12,4 +12,4 @@ const SideBar = ({ onLogout }) => (
   </div>
 );
 
-export default SideBar;
+export default NavigationBar;

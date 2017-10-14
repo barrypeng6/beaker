@@ -2,7 +2,7 @@ import LoadingComponent from './LoadingComponent';
 import PrivateRoute from './PrivateRoute';
 import NoMatchRoute from './NoMatchRoute';
 import LogoutButton from './LogoutButton';
-import SideBar from './SideBar';
+import NavigationBar from './NavigationBar';
 
 // global components
 
@@ -11,5 +11,5 @@ export {
   PrivateRoute,
   NoMatchRoute,
   LogoutButton,
-  SideBar
+  NavigationBar
 };
