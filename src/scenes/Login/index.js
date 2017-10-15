@@ -21,8 +21,8 @@ const mapDispatchToProps = (dispatch) => {
 
 class Login extends Component {
     render() {
-      const { isLogin, isLogining, onLogin, error } = this.props;
-      const { from } = this.props.location.state || { from: { pathname: '/' } };
+      const { location, isLogin, isLogining, onLogin, error } = this.props;
+      const { from } = location.state || { from: { pathname: '/' } };
       return (
         isLogin ? <Redirect to={from}/>
         : <div>

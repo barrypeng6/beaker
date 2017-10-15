@@ -6,8 +6,7 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Loadable from 'react-loadable';
-import { LoadingComponent } from './components';
-import { PrivateRoute, NoMatchRoute } from './components';
+import { LoadingComponent, PrivateRoute, NoMatchRoute } from './components';
 import { connect } from 'react-redux';
 import { checkLoginRequest, logoutRequest } from './actions';
 
@@ -44,6 +43,21 @@ const mapDispatchToProps = (dispatch) => {
   };
 }
 
+const routes = [
+  {
+    name: 'Home',
+    path: '/',
+    component: Home,
+    exact: true,
+  },
+  {
+    name: 'Orders',
+    path: '/orders',
+    component: Orders,
+    exact: false,
+  }
+];
+
 class Root extends Component {
   componentDidMount() {
     !this.props.isLogin && this.props.onCheckLogin();
@@ -58,8 +72,16 @@ class Root extends Component {
         <Router>
             <Switch>
               <Route path="/login" component={Login}/>
-              <PrivateRoute exact path="/" component={Home} isLogin={isLogin} onLogout={onLogout}/>
-              <PrivateRoute exact path="/orders" component={Orders} isLogin={isLogin}  onLogout={onLogout}/>
+              {routes.map( route => (
+                <PrivateRoute
+                  key={route.name}
+                  exact={route.exact}
+                  path={route.path}
+                  component={route.component}
+                  isLogin={isLogin}
+                  onLogout={onLogout}
+                />
+              ))}
               <NoMatchRoute/>
             </Switch>
         </Router>
