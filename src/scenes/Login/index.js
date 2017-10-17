@@ -36,8 +36,8 @@ const Login = ({ location, isLogin, isLogining, onLogin, error }) => {
     constructor() {
       super();
       this.state = {
-        account: 'annie@meepshop.com',
-        password: '123456'
+        account: '',
+        password: ''
       }
     }
 
