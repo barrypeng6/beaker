@@ -11,6 +11,7 @@
 6. Jest
 7. Flow
 8. Reselect
+9. Cypress
 
 # Usage
 此專案使用**Create React App**，可以使用以下script開始。
@@ -22,6 +23,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ### `yarn test` or `npm test`
 Launches the Test Runner in the Watch Mode.<br>
 Create React App uses Jest as its test runner. 
+### `yarn cypress` or `npm run cypress`
+Launches the End-to-end Testing<br>
+In this project, we use Cypress for end-to-end testing.
 ### `yarn build` or `npm run build`
 Builds the App for Production to the `build` folder
 
@@ -73,6 +77,9 @@ export default class App extends React.Component {
 }
 ```
 
-## Wrinting Test
+## Unit Test
 Using Jest<br>
 Testing Actions, Reducers, Redux-saga
+
+## End-to-end Test
+Use [Cypress.io](https://www.cypress.io/)
