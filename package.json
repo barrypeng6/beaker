@@ -23,6 +23,12 @@
     "cypress": "./node_modules/.bin/cypress open"
   },
   "devDependencies": {
-    "cypress": "^1.0.2"
+    "cypress": "^1.0.2",
+    "cz-conventional-changelog": "^2.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
