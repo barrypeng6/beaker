@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
-import { SideBar, Wrapper, AppBar, MainContent } from './components';
+import { SideBar, Wrapper, AppBar, MainContent } from '../../components';
 
 const OrderListView = ({match}) => (
   <div>
