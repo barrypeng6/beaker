@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginRequest } from '../../actions'
+import { loginRequest } from '../../actions';
+
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
+import styled from 'styled-components';
 
 const mapStateToProps = (state) => {
   return {
@@ -27,7 +31,6 @@ const Login = ({ location, isLogin, isLogining, onLogin, error }) => {
       isLogining={isLogining}
       onLogin={onLogin}
       error={error}
-      from={from}
     />
   );
 }
@@ -52,32 +55,52 @@ const Login = ({ location, isLogin, isLogining, onLogin, error }) => {
     }
 
     render() {
-      const { from, isLogining, onLogin, error } = this.props;
+      const { isLogining, onLogin, error } = this.props;
       const { account, password } = this.state;
       return (
-        <div>
-          <p>You must log in to view the page at {from.pathname}</p>
-          <input
-            type="text"
-            name={'account'}
-            value={account}
-            onChange={this._handleAccountInputChange}
-          />
-          <input
-            type="password"
-            name={'password'}
-            value={password}
-            onChange={this._handlePasswordInputChange}
-          />
-          {isLogining ? <span>{'is logging...'}</span>
-            : <button onClick={() => {
-                onLogin(account, password);
-              }}
-            >Log in</button>}
-            <div style={{color: 'red'}}>{error}</div>
-        </div>
+        <Container>
+          <StyledDiv>
+            <p>meepShop</p>
+            <TextField
+              id="account"
+              label="Account"
+              value={account}
+              onChange={this._handleAccountInputChange}
+              margin="normal"
+            /><br/>
+            <TextField
+              id="password"
+              label="Password"
+              type="password"
+              value={password}
+              onChange={this._handlePasswordInputChange}
+              margin="normal"
+            /><br/>
+            {isLogining ? <span>{'is logging...'}</span>
+              : <Button
+                  onClick={() => {
+                    onLogin(account, password);
+                  }} >Log in</Button>
+            }
+              <div style={{color: 'red'}}>{error}</div>
+          </StyledDiv>
+        </Container>
       );
     }
   }
+
+  const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  `;
+
+  const StyledDiv = styled.div`
+    padding: 20px;
+  `;
 
   export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
