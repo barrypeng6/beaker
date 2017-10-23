@@ -1,8 +1,7 @@
 import LoadingComponent from './LoadingComponent';
 import PrivateRoute from './PrivateRoute';
 import NoMatchRoute from './NoMatchRoute';
-import LogoutButton from './LogoutButton';
-import MiniDrawer from './MiniDrawer';
+import NavigationBar from './NavigationBar';
 import SideBar from './SideBar';
 import Wrapper from './Wrapper';
 import AppBar from './AppBar';
@@ -14,8 +13,7 @@ export {
   LoadingComponent,
   PrivateRoute,
   NoMatchRoute,
-  LogoutButton,
-  MiniDrawer,
+  NavigationBar,
   SideBar,
   Wrapper,
   AppBar,
